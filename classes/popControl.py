@@ -1,5 +1,5 @@
 from pyglet.graphics import Batch
-
+from rect import Rect
 from rocket import Rocket
 from constants import MAXROCKETS,LIFESPAN,TARGETPOS
 from math import hypot
@@ -21,7 +21,7 @@ class Population(object):
     def checkCollide(self,rects):
         for j in rects:
             for i in self.pop:
-                if i.rect.colliderect(j):
+                if i.rect.collides(j):
                     i.crashed = True
 
     def all_done(self):

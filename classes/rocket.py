@@ -5,6 +5,7 @@ from dna import Dna
 import random
 from math import hypot
 from euclid import Vector2
+from rect import Rect
 
 class Rocket(object):
     def __init__(self,dna = None,batch = None):
@@ -12,6 +13,7 @@ class Rocket(object):
             self.img = Sprite(image.load('props/rocket.png'),WIDTH/2,int(HEIGHT*0.1),batch=batch)
         else:
             self.img = Sprite(image.load('props/rocket.png'),WIDTH/2,int(HEIGHT*0.1))
+        self.rect = Rect(self.img.x,self.img.y,self.img.width,self.img.height)
         self.vel = Vector2(0,-1)
         self.acc = Vector2()
         self.fitness = 0
