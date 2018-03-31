@@ -1,26 +1,20 @@
-from pygame import font
+from pyglet.text import HTMLLabel
 
-from constants import FONTSIZE,RED,HEIGHT
+from constants import FONTSIZE,RED,HEIGHT,WIDTH
 
 class Text(object):
-    def __init__(self):
-        self.font = font.Font(font.get_default_font(),FONTSIZE)
+    def __init__(self,batch=None):
         self.text = []
+        self.batch = batch
     
     def set_text(self,*text):
-        self.text = []
-        for i in text:
-            self.text.append(self.font.render(str(i),True,RED))
+        self.text = text
 
-    def draw(self,display):
-        height = 0
+    def draw(self):
+        html = ''
         for i in self.text:
-            height += i.get_rect().height
-
-        for i in self.text:
-            rect = i.get_rect()
-            rect.left = 10
-            rect.top = HEIGHT-height
-            height -= rect.height
-            display.blit(i,rect)
+            html += i+' <br> '
+        htmllbl = HTMLLabel(html,x=0,y=HEIGHT,anchor_x='left',anchor_y='top',multiline=True,width=int(WIDTH*0.3))
+        htmllbl.color = (255,0,0,255)
+        htmllbl.draw()
         

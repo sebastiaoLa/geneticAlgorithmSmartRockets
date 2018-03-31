@@ -1,5 +1,5 @@
 from constants import LIFESPAN,MUTATIONFACTOR
-from pygame.math import Vector2
+from euclid import Vector2
 from random import random,randint
 
 class Dna(object):

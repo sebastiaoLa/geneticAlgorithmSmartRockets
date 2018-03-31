@@ -1,17 +1,19 @@
-from pygame import image,math,transform
+from pyglet import image
+from pyglet.sprite import Sprite
 from constants import WIDTH,HEIGHT,GRAVITY,TARGETPOS
 from dna import Dna
 import random
 from math import hypot
+from euclid import Vector2
 
 class Rocket(object):
-    def __init__(self,dna = None):
-        self.img = image.load('props/rocket.png')
-        self.rect = self.img.get_rect()
-        self.rect.center = (WIDTH/2,HEIGHT/2)
-        self.rect.bottom = HEIGHT-50
-        self.vel = math.Vector2(0,-1)
-        self.acc = math.Vector2()
+    def __init__(self,dna = None,batch = None):
+        if batch:
+            self.img = Sprite(image.load('props/rocket.png'),WIDTH/2,int(HEIGHT*0.1),batch=batch)
+        else:
+            self.img = Sprite(image.load('props/rocket.png'),WIDTH/2,int(HEIGHT*0.1))
+        self.vel = Vector2(0,-1)
+        self.acc = Vector2()
         self.fitness = 0
         self.hit = False
         self.hitTime = 0
@@ -22,25 +24,24 @@ class Rocket(object):
             self.dna = Dna()
 
     def destroyed(self):
-        return self.rect.centerx<0 or self.rect.centerx>WIDTH or self.rect.centery<0 or self.rect.centery>HEIGHT
+        return self.img.x<0 or self.img.x>WIDTH or self.img.y<0 or self.img.y>HEIGHT
 
     def applyForce(self,force):
-        if self.acc.length() != 0:
-            self.acc = self.acc.normalize()
         self.acc += force
+        self.acc = self.acc.normalize()
 
     def update(self,count):
         if not self.crashed and not self.hit:
-            self.acc = math.Vector2()
+            self.acc = Vector2()
             # self.applyForce(GRAVITY)
             self.applyForce(self.dna.genes[count])
             self.vel += self.acc
-            self.rect = self.rect.move(int(self.vel.x),int(self.vel.y))
+            self.img.x,self.img.y = self.img.x+self.vel.x,self.img.y+self.vel.y
             if self.destroyed():
                 self.crashed = True
-            elif hypot(self.rect.centerx-TARGETPOS[0],self.rect.centery-TARGETPOS[1])<20:
+            elif hypot(self.img.x-TARGETPOS[0],self.img.y-TARGETPOS[1])<20:
                 self.hit = True
                 self.hitTime = count
 
-    def show(self,disp):
-        disp.blit(self.img,self.rect)        
+    def draw(self):
+        self.img.draw()
