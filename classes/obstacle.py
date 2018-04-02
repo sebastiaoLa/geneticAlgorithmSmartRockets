@@ -39,7 +39,7 @@ class Obstacle(object):
     def checkCollide(self,rects):
         self.checkAgain = False
         for i in rects:
-            if self.rect.collides(i):
+            if self.rect.collides(i.rect):
                 self.newCenter()
                 self.checkAgain = True
                 break

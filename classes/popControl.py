@@ -21,7 +21,7 @@ class Population(object):
     def checkCollide(self,rects):
         for j in rects:
             for i in self.pop:
-                if i.rect.collides(j):
+                if i.rect.collides(j.rect):
                     i.crashed = True
 
     def all_done(self):

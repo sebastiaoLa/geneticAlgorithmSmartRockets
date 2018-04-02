@@ -38,7 +38,7 @@ class Rocket(object):
             # self.applyForce(GRAVITY)
             self.applyForce(self.dna.genes[count])
             self.vel += self.acc
-            self.img.x,self.img.y = self.img.x+self.vel.x,self.img.y+self.vel.y
+            self.rect.x,self.rect.y = self.img.x,self.img.y = self.img.x+self.vel.x,self.img.y+self.vel.y
             if self.destroyed():
                 self.crashed = True
             elif hypot(self.img.x-TARGETPOS[0],self.img.y-TARGETPOS[1])<20:
