@@ -1,7 +1,9 @@
-from rocket import Rocket
-from constants import MAXROCKETS,LIFESPAN,TARGETPOS
 from math import hypot
+
+from .constants import LIFESPAN, MAXROCKETS, TARGETPOS
 from random import choice
+from .rocket import Rocket
+
 
 class Population(object):
     def __init__(self):
@@ -49,9 +51,9 @@ class Population(object):
             if i.hit:
                 hited  += 1
                 i.fitness = i.fitness*100/(i.hitTime/50)
-        print 'generation: ',self.gen
-        print (crashed/float(MAXROCKETS))*100,'% crashed'
-        print (hited/float(MAXROCKETS))*100,'% hited'
+        print ('generation: ',self.gen)
+        print ((crashed/float(MAXROCKETS))*100,'% crashed')
+        print ((hited/float(MAXROCKETS))*100,'% hited')
 
     def fillMatingPool(self):
         self.matingpool = []

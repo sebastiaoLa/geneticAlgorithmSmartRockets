@@ -1,6 +1,6 @@
 from pygame import Rect
 
-from constants import WIDTH,HEIGHT,WHITE,OBSTACLETESTLIMIT
+from .constants import WIDTH,HEIGHT,WHITE,OBSTACLETESTLIMIT
 
 from random import randint
 
@@ -27,12 +27,12 @@ class Obstacle(object):
     def newCenter(self):
         if self.tests<OBSTACLETESTLIMIT:
             self.rect.center = (randint(int(WIDTH*0.1),int(WIDTH*0.8)),randint(int(HEIGHT*0.3),int(HEIGHT*0.6)))
-            print 'new pos',
+            print ('new pos'),
         else:
             self.width = randint(int(WIDTH*0.01),int(WIDTH*0.2))
             self.height = randint(int(HEIGHT*0.01),int(HEIGHT*0.2))
             self.rect = Rect(randint(int(WIDTH*0.1),int(WIDTH*0.8))+self.width/2,randint(int(HEIGHT*0.3),int(HEIGHT*0.6))+self.height/2,self.width,self.height)
-            print 'new rect'
+            print ('new rect')
             self.tests = 0
 
     def checkCollide(self,rects):

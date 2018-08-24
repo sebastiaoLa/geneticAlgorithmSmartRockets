@@ -1,6 +1,6 @@
 from pygame import font
 
-from constants import FONTSIZE,RED,HEIGHT
+from .constants import FONTSIZE,RED,HEIGHT
 
 class Text(object):
     def __init__(self):

@@ -1,8 +1,11 @@
-from pygame import image,math,transform
-from constants import WIDTH,HEIGHT,GRAVITY,TARGETPOS
-from dna import Dna
 import random
 from math import hypot
+
+from pygame import image, math, transform
+
+from .constants import GRAVITY, HEIGHT, TARGETPOS, WIDTH
+from .dna import Dna
+
 
 class Rocket(object):
     def __init__(self,dna = None):

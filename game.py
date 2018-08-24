@@ -37,7 +37,7 @@ class Game(object):
         self.text.draw(self.displaySurf)
         if self.population.gen > len(self.obstacles) and len(self.obstacles)<MAXOBSTACLES:
             self.obstacles.append(Obstacle(self.obstacles))
-            print 'novo obstaculo'
+            print ('novo obstaculo')
         for i in self.obstacles:
             i.draw(self.displaySurf)
         self.population.checkCollide(self.obstacles)
