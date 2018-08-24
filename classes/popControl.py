@@ -1,7 +1,7 @@
 from math import hypot
+from random import choice
 
 from .constants import LIFESPAN, MAXROCKETS, TARGETPOS
-from random import choice
 from .rocket import Rocket
 
 

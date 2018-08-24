@@ -1,8 +1,9 @@
+from random import randint
+
 from pygame import Rect
 
-from .constants import WIDTH,HEIGHT,WHITE,OBSTACLETESTLIMIT
+from .constants import HEIGHT, OBSTACLETESTLIMIT, WHITE, WIDTH
 
-from random import randint
 
 class Obstacle(object):
     def __init__(self, rects = None):
