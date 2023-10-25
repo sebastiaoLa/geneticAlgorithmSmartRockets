@@ -15,7 +15,7 @@ class Dna(object):
         mid = randint(int(len(self.genes)*0.4),int(len(self.genes)*0.6))
         newGenes = []
         for i in range(0,len(self.genes)):
-            if randint(0,100)<MUTATIONFACTOR:
+            if randint(0,1000)<MUTATIONFACTOR:
                 newGenes.append(Vector2(random()*randint(-1,1),random()*randint(-1,1)))
             else:
                 if i < mid:
@@ -23,4 +23,3 @@ class Dna(object):
                 else:
                     newGenes.append(partner.genes[i])
         return Dna(newGenes)
-

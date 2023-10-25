@@ -25,10 +25,10 @@ class Game(object):
 
         self.obstacles = [Obstacle()]
 
-        # for i in range(0,MAXOBSTACLES):
-        #     print 'new obstacle',len(self.obstacles)
-        #     obs = Obstacle(self.obstacles)
-        #     self.obstacles.append(obs)
+        for i in range(0,MAXOBSTACLES):
+            print(f"new obstacle,{len(self.obstacles)}")
+            obs = Obstacle(self.obstacles)
+            self.obstacles.append(obs)
 
     def draw(self):
         self.displaySurf.fill((0,0,0))
@@ -42,7 +42,7 @@ class Game(object):
             i.draw(self.displaySurf)
         self.population.checkCollide(self.obstacles)
         self.population.draw(self.displaySurf)
-    
+
     def main_loop(self):
         while True:
             for event in pygame.event.get():
@@ -52,12 +52,12 @@ class Game(object):
                     if event.key == K_ESCAPE:
                         sys.exit()
                         pygame.quit()
-                        exit()  
+                        exit()
                 if event.type == pygame.QUIT:
                     sys.exit()
             self.draw()
             pygame.display.flip()
-            
+
 
 game = Game()
 game.main_loop()
